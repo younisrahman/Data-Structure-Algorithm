@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//#include<iostream>
+// a power b = if even = (a square 2) b/2 else a* a power b-1
 using namespace std;
 int fastPower(int a, int b);
 int main()
