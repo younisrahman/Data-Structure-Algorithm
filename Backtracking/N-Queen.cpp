@@ -15,30 +15,51 @@ void print(Matrix &m)
     }
     cout << endl;
 }
-
-int n_queen(int arr[], int row)
+bool isSafe(Matrix &board, int row, int col)
 {
+    return true;
+}
+
+bool n_queen(Matrix &board, int n, int row)
+{
+    if (row == n)
+    {
+        return true;
+    }
+    for (int col = 0; col < n; col++)
+    {
+        if (isSafe(board, row, col))
+        {
+            board[row][col] = 1;
+            if (n_queen(board, n, (row + 1)))
+            {
+                return true;
+            }
+            board[row][col] = 0;
+        }
+    }
+    return false;
 }
 int main()
 {
-    // int n, a;
+    int n, a;
 
-    // cin >> n;
-    // while (n--)
-    // {
-    //     cin >> a;
-    //     int arr[a][a];
-    //     n_queen(arr, a)
-    // }
+    cin >> n;
+    while (n--)
+    {
+        cin >> a;
+        Matrix n(a, vector<int>(a, 0));
+        cout << n_queen(n, a, 0) << endl;
+    }
 
-    Matrix m = {{1, 2, 3, 4},
-                {5, 6, 7, 8},
-                {9, 1, 2, 3}};
-    print(m);
+    // Matrix m = {{1, 2, 3, 4},
+    //             {5, 6, 7, 8},
+    //             {9, 1, 2, 3}};
+    // print(m);
 
-    // To initialize a 3 x 4 matrix with 0:
-    Matrix n(3, vector<int>(4, 0));
-    print(n);
+    // // To initialize a 3 x 4 matrix with 0:
+    // Matrix n(3, vector<int>(4, 0));
+    // print(n);
 
     return 0;
 }
