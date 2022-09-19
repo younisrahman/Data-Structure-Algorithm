@@ -1,65 +1,80 @@
+/* C++ program to solve N Queen Problem using
+backtracking */
+
 #include <bits/stdc++.h>
-//#include<iostream>
+#define N 4
 using namespace std;
 
-typedef vector<vector<int>> Matrix;
-void print(Matrix &m)
+/* A utility function to print solution */
+void printSolution(int board[N][N])
 {
-    int M = m.size();
-    int N = m[0].size();
-    for (int i = 0; i < M; i++)
+    for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
-            cout << m[i][j] << " ";
-        cout << endl;
+            cout << " " << board[i][j] << " ";
+        printf("\n");
     }
-    cout << endl;
 }
-bool isSafe(Matrix &board, int row, int col)
+
+bool isSafe(int board[N][N], int row, int col)
 {
+    int i, j;
+
+    /* Check this row on left side */
+    for (i = 0; i < col; i++)
+        if (board[row][i])
+            return false;
+
+    /* Check upper diagonal on left side */
+    for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
+        if (board[i][j])
+            return false;
+
+    /* Check lower diagonal on left side */
+    for (i = row, j = col; j >= 0 && i < N; i++, j--)
+        if (board[i][j])
+            return false;
+
+    return true;
+}
+bool solveNQUtil(int board[N][N], int col)
+{
+    if (col >= N)
+        return true;
+
+    for (int i = 0; i < N; i++)
+    {
+        if (isSafe(board, i, col))
+        {
+
+            board[i][col] = 1;
+
+            if (solveNQUtil(board, col + 1))
+                return true;
+
+            board[i][col] = 0; // BACKTRACK
+        }
+    }
+
+    return false;
+}
+
+bool solveNQ()
+{
+    int board[N][N] = {0};
+
+    if (solveNQUtil(board, 0) == false)
+    {
+        cout << "Solution does not exist";
+        return false;
+    }
+
+    printSolution(board);
     return true;
 }
 
-bool n_queen(Matrix &board, int n, int row)
-{
-    if (row == n)
-    {
-        return true;
-    }
-    for (int col = 0; col < n; col++)
-    {
-        if (isSafe(board, row, col))
-        {
-            board[row][col] = 1;
-            if (n_queen(board, n, (row + 1)))
-            {
-                return true;
-            }
-            board[row][col] = 0;
-        }
-    }
-    return false;
-}
 int main()
 {
-    int n, a;
-
-    cin >> n;
-    while (n--)
-    {
-        cin >> a;
-        Matrix n(a, vector<int>(a, 0));
-        cout << n_queen(n, a, 0) << endl;
-    }
-
-    // Matrix m = {{1, 2, 3, 4},
-    //             {5, 6, 7, 8},
-    //             {9, 1, 2, 3}};
-    // print(m);
-
-    // // To initialize a 3 x 4 matrix with 0:
-    // Matrix n(3, vector<int>(4, 0));
-    // print(n);
-
+    solveNQ();
     return 0;
 }
