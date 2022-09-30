@@ -6,7 +6,7 @@
     cout.tie(0);
 using namespace std;
 
-vector<int> BubbleSort(vector<int> vec)
+vector<int> BubbleSort(vector<int> vec) // O(n^2)
 {
     int size = vec.size() - 1;
     for (int i = 0; i < size; i++)
