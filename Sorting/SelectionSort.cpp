@@ -19,9 +19,12 @@ vector<int> SelectionSort(vector<int> vec) // O(n^2)
                 minimum = j;
             }
         }
-        int temp = vec[i];
-        vec[i] = vec[minimum];
-        vec[minimum] = temp;
+        if (minimum != i)
+        {
+            int temp = vec[i];
+            vec[i] = vec[minimum];
+            vec[minimum] = temp;
+        }
     }
     return vec;
 }
