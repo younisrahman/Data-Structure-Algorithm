@@ -6,9 +6,9 @@
     cout.tie(0);
 using namespace std;
 
-bool binarySearch(int arr[], int size, int key)
+bool binarySearch(int arr[], int low, int high, int key)
 {
-    int low = 0, high = size - 1;
+
     bool ans = false;
     while (low <= high)
     {
@@ -29,6 +29,17 @@ bool binarySearch(int arr[], int size, int key)
     }
     return ans;
 }
+void searchInfinite(int arr[], int key)
+{
+    int low = 0, high = 1;
+    while (arr[high] < key)
+    {
+        low = high;
+        high = high * 2;
+    }
+
+    std::cout << binarySearch(arr, low, high, key) << std::endl;
+}
 int main()
 {
     FastIO;
@@ -43,7 +54,9 @@ int main()
         8,
         9,
     };
-    int key = 7;
-    std::cout << binarySearch(arr, 9, key) << std::endl;
+    int key = 17;
+    searchInfinite(arr, key);
+    //     std::cout
+    // << binarySearch(arr, 9, key) << std::endl;
     return 0;
 }
