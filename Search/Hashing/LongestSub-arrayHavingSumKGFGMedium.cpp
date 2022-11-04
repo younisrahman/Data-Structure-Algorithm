@@ -7,6 +7,7 @@
 using namespace std;
 void findSubarray(vector<int> &v, int k)
 {
+    unordered_map<int, int> map;
 }
 int main()
 {
@@ -14,5 +15,6 @@ int main()
     vector<int> v = {10, 5, 2, 7, 1, 9};
     int k = 15;
     findSubarray(v, k);
+
     return 0;
 }
