@@ -35,6 +35,28 @@ vector<int> insert(vector<int> &v, int val)
 }
 vector<int> deleteHeap(vector<int> &v)
 {
+
+    int n = v.size();
+    swap(v[1], v[n - 1]);
+    v.pop_back();
+    int i = 1;
+    while (i < n - 1)
+    {
+        int left = v[2 * i];
+        int right = v[2 * i + 1];
+        int large = left > right ? 2 * i : 2 * i + 1;
+
+        if (v[i] < v[large])
+        {
+            swap(v[i], v[large]);
+            i = large;
+        }
+        else
+        {
+            return v;
+        }
+    }
+
     return v;
 }
 int main()
