@@ -8,14 +8,10 @@ using namespace std;
 int main()
 {
     FastIO;
-    int t;
-    cin >> t;
-    vector<int> vector;
-    set<int> set;
-    while (t--)
-    {
-        int n;
-        cin >> n;
-    }
+    vector<int> v = {3, 5, 7, 12, 66, 98, 43, 79, 32, 89};
+    int k = 3;
+
+    priority_queue<int> qa;
+
     return 0;
 }
