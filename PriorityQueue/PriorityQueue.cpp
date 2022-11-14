@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
 #define ll long long int
 #define FastIO                        \
     ios_base::sync_with_stdio(false); \
@@ -7,15 +8,18 @@
 using namespace std;
 int main()
 {
-    FastIO;
-    int t;
-    cin >> t;
-    vector<int> vector;
-    set<int> set;
-    while (t--)
+    priority_queue<int> q;
+    q.push(6);
+    q.push(15);
+    q.push(10);
+
+    int count = 1;
+    while (!q.empty())
     {
-        int n;
-        cin >> n;
+        std::cout << count << " " << q.top() << std::endl;
+        q.pop();
+        count++;
     }
+
     return 0;
 }
