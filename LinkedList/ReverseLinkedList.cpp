@@ -83,7 +83,20 @@ void print(Node *&head)
     }
     cout << "NULL" << endl;
 }
+Node *reverse(Node *&head)
+{
+    Node *cur = head;
+    Node *prev = NULL;
+    while (cur != NULL)
+    {
+        Node *temp = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = temp;
+    }
 
+    return prev;
+}
 int main()
 {
     FastIO;
@@ -106,6 +119,10 @@ int main()
     insertafter(head, 5, 6);
     cout << "After insertion at a given position: ";
     print(head);
+
+    Node *reversed = reverse(head);
+    print(reversed);
+
     cout << endl;
 
     return 0;
