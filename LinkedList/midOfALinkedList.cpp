@@ -97,6 +97,17 @@ Node *reverse(Node *&head)
 
     return prev;
 }
+Node *midNode(Node *head)
+{
+    Node *fast = head;
+    Node *slow = head;
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
 int main()
 {
     FastIO;
@@ -105,23 +116,14 @@ int main()
 
     insertathead(head, 1);
     insertathead(head, 2);
-    cout << "After insertion at head: ";
-    print(head);
-    cout << endl;
-
     insertattail(head, 4);
     insertattail(head, 5);
-    cout << "After insertion at tail: ";
-    print(head);
-    cout << endl;
-
     insertafter(head, 1, 2);
     insertafter(head, 5, 6);
-    cout << "After insertion at a given position: ";
     print(head);
 
-    Node *reversed = reverse(head);
-    print(reversed);
+    Node *mid = midNode(head);
+    print(mid);
 
     cout << endl;
 
