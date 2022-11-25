@@ -108,24 +108,45 @@ Node *midNode(Node *head)
     }
     return slow;
 }
+bool isPalindrome(Node *head)
+{
+    if (head == NULL)
+    {
+        return true;
+    }
+    Node *cur = head;
+    Node *mid = midNode(head);
+    Node *last = reverse(mid);
+    print(last);
+    while (last != NULL)
+    {
+        if (last->data != cur->data)
+            return false;
+        last = last->next;
+        cur = cur->next;
+    }
+
+    return true;
+}
 int main()
 {
     FastIO;
     // Declaring an empty linked list
     Node *head = NULL;
 
-    insertathead(head, 1);
-    insertathead(head, 2);
-    insertattail(head, 4);
+    insertattail(head, 1);
+    insertattail(head, 2);
+    insertattail(head, 3);
     insertattail(head, 5);
-    insertafter(head, 1, 2);
-    insertafter(head, 5, 6);
+    insertattail(head, 3);
+    insertattail(head, 2);
+    insertattail(head, 1);
     print(head);
 
     Node *mid = midNode(head);
     print(mid);
 
     cout << endl;
-
+    std::cout << isPalindrome(head) << std::endl;
     return 0;
 }
