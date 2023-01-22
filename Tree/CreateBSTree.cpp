@@ -20,7 +20,7 @@ public:
     }
 };
 
-Node *createBSTree()
+Node *createBST()
 {
     Node *root = NULL;
     std::cout << "Enter Data : ";
@@ -32,10 +32,10 @@ Node *createBSTree()
 
     root = new Node(d);
     std::cout << "Enter left Data for " << d << std::endl;
-    root->left = createBSTree();
+    root->left = createBST();
 
     std::cout << "Enter right Data for " << d << std::endl;
-    root->right = createBSTree();
+    root->right = createBST();
 
     return root;
 }
@@ -43,7 +43,7 @@ int main()
 {
     FastIO;
 
-    Node *root = createBSTree();
+    Node *root = createBST();
 
     return 0;
 }
